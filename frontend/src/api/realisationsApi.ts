@@ -17,7 +17,9 @@ const createRealisation = async (
     });
 
     if (!response.ok) {
-      throw new Error(`Erreur lors de la création de la réalisation : ${response.statusText}`);
+      throw new Error(
+        `Erreur lors de la création de la réalisation : ${response.statusText}`
+      );
     }
 
     return await response.json();
@@ -26,7 +28,6 @@ const createRealisation = async (
     throw error;
   }
 };
-
 
 // Function to update a realisation
 const updateRealisation = async (
@@ -44,7 +45,9 @@ const updateRealisation = async (
     });
 
     if (!response.ok) {
-      throw new Error(`Erreur lors de la mise à jour de la réalisation : ${response.statusText}`);
+      throw new Error(
+        `Erreur lors de la mise à jour de la réalisation : ${response.statusText}`
+      );
     }
 
     return await response.json();
@@ -69,12 +72,17 @@ const updateOrderRealisation = async (
     });
 
     if (!response.ok) {
-      throw new Error(`Erreur lors de la mise à jour des ordres des réalisations : ${response.statusText}`);
+      throw new Error(
+        `Erreur lors de la mise à jour des ordres des réalisations : ${response.statusText}`
+      );
     }
 
     return await response.json();
   } catch (error) {
-    console.error(`Erreur lors de la mise à jour des ordres des réalisations :`, error);
+    console.error(
+      `Erreur lors de la mise à jour des ordres des réalisations :`,
+      error
+    );
     throw error;
   }
 };
@@ -88,10 +96,15 @@ const deleteRealisation = async (id: string): Promise<void> => {
     });
 
     if (!response.ok) {
-      throw new Error(`Erreur lors de la suppression de la réalisation avec ID ${id}: ${response.statusText}`);
+      throw new Error(
+        `Erreur lors de la suppression de la réalisation avec ID ${id}: ${response.statusText}`
+      );
     }
   } catch (error) {
-    console.error(`Erreur lors de la suppression de la réalisation avec ID ${id}:`, error);
+    console.error(
+      `Erreur lors de la suppression de la réalisation avec ID ${id}:`,
+      error
+    );
     throw error;
   }
 };

@@ -12,7 +12,9 @@ const init2FA = async (): Promise<string> => {
     });
 
     if (!response.ok) {
-      throw new Error(`Erreur lors de l'activation 2FA : ${response.statusText}`);
+      throw new Error(
+        `Erreur lors de l'activation 2FA : ${response.statusText}`
+      );
     }
 
     const data = await response.text();
@@ -38,11 +40,13 @@ const verifyInitCode2FA = async (code2FA: string): Promise<string[]> => {
     });
 
     if (!response.ok) {
-      throw new Error(`Erreur lors de la validation 2FA : ${response.statusText}`);
+      throw new Error(
+        `Erreur lors de la validation 2FA : ${response.statusText}`
+      );
     }
 
-    const data = await response.json(); 
-    return data; 
+    const data = await response.json();
+    return data;
   } catch (error) {
     console.error('Erreur lors de la validation 2FA :', error);
     throw error;
@@ -62,7 +66,9 @@ const disable2FA = async (): Promise<number> => {
     });
 
     if (!response.ok) {
-      throw new Error(`Erreur lors de la désactivation 2FA : ${response.statusText}`);
+      throw new Error(
+        `Erreur lors de la désactivation 2FA : ${response.statusText}`
+      );
     }
 
     return response.status;
@@ -84,7 +90,9 @@ const generateBackupCodes2FA = async (): Promise<string[]> => {
     });
 
     if (!response.ok) {
-      throw new Error(`Erreur lors de la génération des backup codes 2FA : ${response.statusText}`);
+      throw new Error(
+        `Erreur lors de la génération des backup codes 2FA : ${response.statusText}`
+      );
     }
 
     const data = await response.json();
@@ -96,13 +104,15 @@ const generateBackupCodes2FA = async (): Promise<string[]> => {
 };
 
 // Function to verify two FA before important action
-const verifyTwoFA = async (code: string): Promise<{ success: boolean; message: string }> => {
+const verifyTwoFA = async (
+  code: string
+): Promise<{ success: boolean; message: string }> => {
   try {
     const response = await fetch(`${API_BASE_URL}/2fa/verify-2fa`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
+        Accept: 'application/json',
       },
       body: JSON.stringify({ code }),
       credentials: 'include',
@@ -110,7 +120,9 @@ const verifyTwoFA = async (code: string): Promise<{ success: boolean; message: s
 
     if (!response.ok) {
       const errorResponse = await response.json();
-      throw new Error(errorResponse.message || 'Erreur lors de la vérification 2FA');
+      throw new Error(
+        errorResponse.message || 'Erreur lors de la vérification 2FA'
+      );
     }
 
     const data = await response.json();
@@ -121,4 +133,10 @@ const verifyTwoFA = async (code: string): Promise<{ success: boolean; message: s
   }
 };
 
-export { init2FA, verifyInitCode2FA, disable2FA, generateBackupCodes2FA, verifyTwoFA };
+export {
+  init2FA,
+  verifyInitCode2FA,
+  disable2FA,
+  generateBackupCodes2FA,
+  verifyTwoFA,
+};

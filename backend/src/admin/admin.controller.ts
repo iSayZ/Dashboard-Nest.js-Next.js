@@ -1,9 +1,9 @@
-import { Get, Req, Put, Body, Controller, UseGuards } from '@nestjs/common';
+import { Get, Post, Put, Body, Controller, UseGuards } from '@nestjs/common';
 import { AdminService } from './admin.service';
 import { JwtAuthGuard } from 'src/guards/jwt-auth.guard';
-import { Request } from 'express';
 import { UpdateProfileAccountDto } from './dto/update-admin-profile.dto';
 import { User } from 'src/decorators/user.decorator';
+import { updatePasswordAccountDto } from './dto/update-admin-account.dto';
 
 @Controller('admin')
 @UseGuards(JwtAuthGuard)
@@ -11,13 +11,12 @@ export class AdminController {
   constructor(private readonly adminService: AdminService) {}
 
   @Get('profile')
-  async readProfile(@Req() request: Request, @User('sub') userId: string) {
+  async readProfile(@User('sub') userId: string) {
     return this.adminService.readProfile(userId);
   }
 
   @Get('settings')
   async readSettingsProfile(
-    @Req() request: Request,
     @User('sub') userId: string
   ) {
     return this.adminService.readSettingsProfile(userId);
@@ -26,7 +25,6 @@ export class AdminController {
   @Put('profile/update')
   async updateProfile(
     @Body() updateProfileAccountDto: UpdateProfileAccountDto,
-    @Req() request: Request,
     @User('sub') userId: string
   ) {
     return this.adminService.updateSettingsProfile(

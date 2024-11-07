@@ -1,7 +1,8 @@
 import { ChevronsUpDown, House, LogOut, Settings } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import useSWR from 'swr';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
@@ -16,13 +17,14 @@ import {
 import { useSidebar } from '@/components/ui/sidebar';
 
 import { logout } from '@/api/authApi';
+import { fetcher } from '@/lib/fetcher';
 import { AdminProfile } from '@/types/admin.interface';
 
-import useSWR from 'swr';
-import { fetcher } from '@/lib/fetcher';
-
 const ProfileButton: React.FC = () => {
-  const { data: profile } = useSWR<AdminProfile | null>('/admin/profile', fetcher);
+  const { data: profile } = useSWR<AdminProfile | null>(
+    '/admin/profile',
+    fetcher
+  );
 
   const router = useRouter();
   const { isMobile } = useSidebar();

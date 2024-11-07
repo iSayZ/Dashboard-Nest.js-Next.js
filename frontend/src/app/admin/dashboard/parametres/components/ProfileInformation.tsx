@@ -76,7 +76,7 @@ const ProfileInformation: React.FC<ProfileProps> = ({
         formData.append('avatar', newAvatar);
         const source = `${profileSettings?.firstname}-${profileSettings?.lastname}`;
         const avatarSrc = await uploadAvatar(formData, source.toLowerCase());
-        console.log(avatarSrc)
+        console.log(avatarSrc);
         profileData.avatar = avatarSrc;
       } catch (e) {
         console.error(e);
@@ -92,7 +92,7 @@ const ProfileInformation: React.FC<ProfileProps> = ({
           onClick: () => '',
         },
       });
-    } catch (error) {
+    } catch {
       toast.error('Erreur lors de la mise à jour du profil.', {
         description: formatDateForUX(new Date().toISOString()),
         action: {

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { mutate } from 'swr';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -14,7 +15,6 @@ import { disable2FA } from '@/api/twoFaApi';
 import { use2FACheck } from '@/hooks/2FA/use2FACheck';
 
 import Verify2FAModal from '../../../components/Verify2FAModal';
-import { mutate } from 'swr';
 
 const Desactivate2FA: React.FC = () => {
   const [showAlertDialog, setShowAlertDialog] = useState<boolean>(false);

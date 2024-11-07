@@ -3,14 +3,15 @@
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
+import useSWR from 'swr';
 
 import { Button } from '@/components/ui/button';
 
-import {
-  updateRealisation,
-} from '@/api/realisationsApi';
+import { updateRealisation } from '@/api/realisationsApi';
 import { uploadRealisationImage } from '@/api/uploadApi';
 import { formatDateForUX } from '@/lib/dateUtils';
+import { fetcher } from '@/lib/fetcher';
+import { Realisation } from '@/types/realisation.interface';
 
 import { Section } from '../../../components/template/TopbarMenu';
 import { useModifyRealisation } from '../../../contexts/ModifyRealisationContext';
@@ -20,9 +21,6 @@ import ModifyRealisationFour from './steps/ModifyRealisationFour';
 import ModifyRealisationOne from './steps/ModifyRealisationOne';
 import ModifyRealisationThree from './steps/ModifyRealisationThree';
 import ModifyRealisationTwo from './steps/ModifyRealisationTwo';
-import useSWR from 'swr';
-import { Realisation } from '@/types/realisation.interface';
-import { fetcher } from '@/lib/fetcher';
 
 const section: Section = {
   items: [
@@ -70,8 +68,12 @@ const ModifyRealisationPage: React.FC<ModifyRealisationProps> = ({
   const router = useRouter();
   const { slug } = params;
 
-  const {data: realisation, isLoading, error} = useSWR<Realisation>(`/realisations/${slug}`, fetcher);
-  
+  const {
+    data: realisation,
+    isLoading,
+    error,
+  } = useSWR<Realisation>(`/realisations/${slug}`, fetcher);
+
   useEffect(() => {
     if (realisation) {
       setFormData({

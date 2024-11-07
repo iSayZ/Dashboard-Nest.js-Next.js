@@ -9,8 +9,8 @@ import {
 import { AdminSettings } from '@/types/admin.interface';
 
 import Settings2FA from './2FA/Settings2FA';
-import EmailDialog from './EmailDialog';
-import PasswordDialog from './PasswordDialog';
+import EmailDialog from './email/EmailDialog';
+import PasswordDialog from './password/PasswordDialog';
 
 interface SecurityProps {
   profileSettings: AdminSettings;

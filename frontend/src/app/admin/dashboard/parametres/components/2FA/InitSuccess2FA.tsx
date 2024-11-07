@@ -13,9 +13,7 @@ interface InitSuccess2FAProps {
   backupCodes: string[];
 }
 
-const InitSuccess2FA: React.FC<InitSuccess2FAProps> = ({
-  backupCodes,
-}) => {
+const InitSuccess2FA: React.FC<InitSuccess2FAProps> = ({ backupCodes }) => {
   // Function to download backup codes
   const downloadBackupCodes = (codes: string[]): void => {
     // Create a title for the downloaded file
@@ -170,9 +168,7 @@ const InitSuccess2FA: React.FC<InitSuccess2FAProps> = ({
           </div>
           <div className="flex justify-center gap-4 sm:justify-end">
             <DialogClose asChild>
-              <Button className="w-36">
-                Continuer
-              </Button>
+              <Button className="w-36">Continuer</Button>
             </DialogClose>
           </div>
         </div>

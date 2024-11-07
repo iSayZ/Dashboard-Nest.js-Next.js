@@ -11,6 +11,7 @@ import {
   AdminProfile,
   AdminProfileSchema,
 } from './schema/admin-profile.schema';
+import { MailModule } from 'src/mail/mail.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import {
       { name: AdminProfile.name, schema: AdminProfileSchema },
     ]),
     AuthModule,
+    MailModule,
   ],
   controllers: [AdminController],
   providers: [AdminService],

@@ -20,6 +20,7 @@ import {
 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
+import { mutate } from 'swr';
 
 import {
   AlertDialog,
@@ -58,8 +59,6 @@ import {
 } from '@/components/ui/tooltip';
 
 import { deleteRealisation } from '@/api/realisationsApi';
-import { Realisation } from '@/types/realisation.interface';
-import { mutate } from 'swr';
 
 interface DataWithIdAndSlug {
   _id: string;

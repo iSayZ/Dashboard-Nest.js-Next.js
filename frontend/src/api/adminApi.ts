@@ -1,5 +1,6 @@
-import { AdminSettings } from '@/types/admin.interface';
 import { mutate } from 'swr';
+
+import { AdminSettings } from '@/types/admin.interface';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
@@ -31,4 +32,6 @@ const updateAdminProfile = async (
 };
 
 // Consolidated exports
-export { updateAdminProfile };
+export { 
+  updateAdminProfile,
+};

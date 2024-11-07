@@ -3,8 +3,9 @@
 
 import { useState } from 'react';
 
-import { use2FAStatus } from './use2FAStatus';
 import { verifyTwoFA } from '@/api/twoFaApi';
+
+import { use2FAStatus } from './use2FAStatus';
 
 interface Use2FACheckResult {
   is2FAModalOpen: boolean;

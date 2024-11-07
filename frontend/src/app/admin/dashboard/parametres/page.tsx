@@ -1,9 +1,11 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import useSWR, { mutate } from 'swr';
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
+import { fetcher } from '@/lib/fetcher';
 import { AdminSettings } from '@/types/admin.interface';
 
 import { Section } from '../components/template/TopbarMenu';
@@ -11,8 +13,6 @@ import { useVisitedSection } from '../contexts/VisitedSectionContext';
 
 import ProfileInformation from './components/ProfileInformation';
 import SecuritySettings from './components/SecuritySettings';
-import useSWR, { mutate } from 'swr';
-import { fetcher } from '@/lib/fetcher';
 
 const section: Section = {
   items: [
@@ -35,8 +35,11 @@ const ProfileSettings: React.FC = () => {
     setVisitedSection(section);
   }, [setVisitedSection]);
 
-  const {data: profileSettings, isLoading, error} = useSWR<AdminSettings>('/admin/settings', fetcher);
-
+  const {
+    data: profileSettings,
+    isLoading,
+    error,
+  } = useSWR<AdminSettings>('/admin/settings', fetcher);
 
   // To switch section tab
   const [sectionValue, setSectionValue] = useState<string>('du Profil');

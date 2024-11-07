@@ -1,6 +1,7 @@
 import { Info } from 'lucide-react';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import { mutate } from 'swr';
 
 import Timer from '@/components/Timer';
 import { Button } from '@/components/ui/button';
@@ -19,7 +20,6 @@ import {
 import { Separator } from '@/components/ui/separator';
 
 import { init2FA, verifyInitCode2FA } from '@/api/twoFaApi';
-import { mutate } from 'swr';
 
 interface Init2FAProps {
   showQrCodeDialog: boolean;

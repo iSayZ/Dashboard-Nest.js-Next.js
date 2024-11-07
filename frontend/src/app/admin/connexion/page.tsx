@@ -90,7 +90,10 @@ const LoginPage: React.FC = () => {
       if (error instanceof Error) {
         setErrorMsg({ ...errorMsg, other: error.message });
       } else {
-        setErrorMsg({ ...errorMsg, other: 'Une erreur est survenue. Veuillez réessayer.' });
+        setErrorMsg({
+          ...errorMsg,
+          other: 'Une erreur est survenue. Veuillez réessayer.',
+        });
       }
     }
   };

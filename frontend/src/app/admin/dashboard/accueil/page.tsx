@@ -1,11 +1,13 @@
 'use client';
 
 import { Clock, Eye, File, TrendingDown } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import useSWR from 'swr';
 
 import { Skeleton } from '@/components/ui/skeleton';
 
 import { formatDateForUX } from '@/lib/dateUtils';
+import { fetcher } from '@/lib/fetcher';
 import { AdminProfile } from '@/types/admin.interface';
 
 import { Section } from '../components/template/TopbarMenu';
@@ -13,10 +15,6 @@ import { useVisitedSection } from '../contexts/VisitedSectionContext';
 
 import IndicatorCard from './components/IndicatorCard';
 import VisitorChart from './components/VisitorChart';
-
-import useSWR from 'swr';
-import { fetcher } from '@/lib/fetcher';
-
 
 const section: Section = {
   items: [],
@@ -33,7 +31,11 @@ const Index: React.FC = () => {
     setVisitedSection(section);
   }, [setVisitedSection]);
 
-  const { data: profile, error, isLoading } = useSWR<AdminProfile | null>('/admin/profile', fetcher);
+  const {
+    data: profile,
+    error,
+    isLoading,
+  } = useSWR<AdminProfile | null>('/admin/profile', fetcher);
 
   if (error) return <div>Erreur de chargement du profil.</div>;
 

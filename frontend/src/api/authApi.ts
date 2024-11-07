@@ -44,22 +44,22 @@ const verify2FALogin = async (
 
     if (!response.ok) {
       const errorData = await response.json();
-      throw new Error(errorData.message || 'Erreur lors de la vérification 2FA');
+      throw new Error(
+        errorData.message || 'Erreur lors de la vérification 2FA'
+      );
     }
 
     const data = await response.json();
 
     return {
       success: data.success,
-      message: data.message
+      message: data.message,
     };
-
   } catch (error) {
     console.error('Erreur lors de la verification 2FA :', error);
     throw error;
   }
 };
-
 
 // Function to logout
 const logout = async (): Promise<{ message: string }> => {
@@ -85,7 +85,9 @@ const logout = async (): Promise<{ message: string }> => {
 };
 
 // Function to verify identity before action
-const verifyIdentity = async (formData: { password: string }): Promise<number> => {
+const verifyIdentity = async (formData: {
+  password: string;
+}): Promise<number> => {
   try {
     const response = await fetch(`${API_BASE_URL}/auth/verify-identity`, {
       method: 'POST',
@@ -98,19 +100,16 @@ const verifyIdentity = async (formData: { password: string }): Promise<number> =
 
     if (!response.ok) {
       const errorData = await response.json();
-      throw new Error(errorData.message || 'Erreur lors de la vérification de l\'identité');
+      throw new Error(
+        errorData.message || "Erreur lors de la vérification de l'identité"
+      );
     }
 
     return response.status;
   } catch (error) {
-    console.error('Erreur lors de la vérification de l\'identité :', error);
+    console.error("Erreur lors de la vérification de l'identité :", error);
     throw error;
   }
 };
 
-export {
-  login,
-  verify2FALogin,
-  logout,
-  verifyIdentity,
-};
+export { login, verify2FALogin, logout, verifyIdentity };

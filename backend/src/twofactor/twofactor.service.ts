@@ -177,7 +177,7 @@ export class TwoFactorService {
   // Clean secret on BDD
   private async cleanupSecret(userId: string) {
     await this.adminAccountModel.findByIdAndUpdate(userId, {
-      two_fa_secret: null,
+      two_fa_secret: 'disabled',
       two_fa_enabled: false,
     });
   }

@@ -52,7 +52,7 @@ const Verify2FAModal: React.FC<Verify2FAModalProps> = ({
       onVerify();
       onClose();
     } catch (err) {
-      if (err instanceof Error)  {
+      if (err instanceof Error) {
         setError(err.message);
       }
     } finally {

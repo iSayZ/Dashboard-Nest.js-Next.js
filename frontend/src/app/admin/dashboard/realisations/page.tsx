@@ -1,7 +1,9 @@
 'use client';
 
 import React, { useEffect } from 'react';
+import useSWR from 'swr';
 
+import { fetcher } from '@/lib/fetcher';
 import { Realisation } from '@/types/realisation.interface';
 
 import { Section } from '../components/template/TopbarMenu';
@@ -9,8 +11,6 @@ import { useVisitedSection } from '../contexts/VisitedSectionContext';
 
 import { columns } from './components/columns';
 import { DataTable } from './components/data-table';
-import useSWR from 'swr';
-import { fetcher } from '@/lib/fetcher';
 
 const section: Section = {
   items: [
@@ -33,7 +33,11 @@ const Realisations: React.FC = () => {
     setVisitedSection(section);
   }, [setVisitedSection]);
 
-  const {data: realisations, isLoading, error} = useSWR<Realisation[]>('/realisations', fetcher);
+  const {
+    data: realisations,
+    isLoading,
+    error,
+  } = useSWR<Realisation[]>('/realisations', fetcher);
 
   if (isLoading) {
     return (
@@ -53,10 +57,7 @@ const Realisations: React.FC = () => {
 
   return (
     <div className="flex flex-col gap-6">
-      <DataTable
-        columns={columns}
-        data={realisations}
-      />
+      <DataTable columns={columns} data={realisations} />
     </div>
   );
 };

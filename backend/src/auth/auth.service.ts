@@ -190,7 +190,7 @@ export class AuthService {
   // --------------------------------------------------------- Auth Services - Functions ---------------------------------------------------------
 
   // Function to generate unique ID (objectId from mongoose)
-  private generateSessionId(): string {
+  generateSessionId(): string {
     return new mongoose.Types.ObjectId().toString();
   }
 

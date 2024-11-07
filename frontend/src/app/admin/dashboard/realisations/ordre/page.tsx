@@ -18,13 +18,13 @@ import {
 } from '@dnd-kit/sortable';
 import React, { useEffect, useState } from 'react';
 import { toast } from 'sonner';
+import useSWR, { mutate } from 'swr';
 
 import { Button } from '@/components/ui/button';
 
-import {
-  updateOrderRealisation,
-} from '@/api/realisationsApi';
+import { updateOrderRealisation } from '@/api/realisationsApi';
 import { formatDateForUX } from '@/lib/dateUtils';
+import { fetcher } from '@/lib/fetcher';
 import { Realisation } from '@/types/realisation.interface';
 
 import { Section } from '../../components/template/TopbarMenu';
@@ -32,8 +32,6 @@ import { useVisitedSection } from '../../contexts/VisitedSectionContext';
 
 import Item from './components/Item';
 import SortableItem from './components/SortableItem';
-import useSWR, { mutate } from 'swr';
-import { fetcher } from '@/lib/fetcher';
 
 const EditRealisation: React.FC = () => {
   // Update the section for breadcrumb into topbarMenu
@@ -60,7 +58,11 @@ const EditRealisation: React.FC = () => {
     setVisitedSection(section);
   }, [setVisitedSection]);
 
-  const {data: items, isLoading, error} = useSWR<Realisation[]>('/realisations/active', fetcher);
+  const {
+    data: items,
+    isLoading,
+    error,
+  } = useSWR<Realisation[]>('/realisations/active', fetcher);
 
   // Manage the state of items and active item being dragged
   const [activeItem, setActiveItem] = useState<Realisation>(); // Track the item being dragged
@@ -86,16 +88,16 @@ const EditRealisation: React.FC = () => {
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
     if (!over || !tempItems) return;
-  
+
     // Trouver les index de l'élément actif et de l'élément cible
     const activeIndex = tempItems.findIndex((item) => item._id === active.id);
     const overIndex = tempItems.findIndex((item) => item._id === over.id);
-  
+
     if (activeIndex !== overIndex) {
       // Appliquer arrayMove sur l'état local temporaire
       const newOrder = arrayMove(tempItems, activeIndex, overIndex);
       setTempItems(newOrder); // Mise à jour temporaire pour l'affichage immédiat
-  
+
       // Mettre à jour SWR sans re-fetch immédiat
       mutate('/realisations/active', newOrder, false);
     }
@@ -108,10 +110,12 @@ const EditRealisation: React.FC = () => {
 
   // Handle saving the current order
   const handleButtonClick = async () => {
-    const itemIds: { slug: string; order: number; }[] | undefined = items?.map((item, index) => ({
-      slug: item.slug,
-      order: index + 1,
-    }));
+    const itemIds: { slug: string; order: number }[] | undefined = items?.map(
+      (item, index) => ({
+        slug: item.slug,
+        order: index + 1,
+      })
+    );
 
     try {
       if (!itemIds) throw error;

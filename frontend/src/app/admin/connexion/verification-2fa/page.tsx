@@ -45,7 +45,7 @@ const Login2FAPage: React.FC = () => {
     } catch (error) {
       console.error(error);
       if (error instanceof Error) {
-        setError(error.message );
+        setError(error.message);
       } else {
         setError('Une erreur est survenue. Veuillez réessayer.');
       }

@@ -33,11 +33,14 @@ const uploadRealisationImage = async (
   source: string
 ): Promise<string> => {
   try {
-    const response = await fetch(`${API_BASE_URL}/upload/realisation/${source}`, {
-      method: 'POST',
-      body: image,
-      credentials: 'include',
-    });
+    const response = await fetch(
+      `${API_BASE_URL}/upload/realisation/${source}`,
+      {
+        method: 'POST',
+        body: image,
+        credentials: 'include',
+      }
+    );
 
     if (!response.ok) {
       const errorResponse = await response.text();

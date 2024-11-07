@@ -71,9 +71,9 @@
   "overrides": [
     {
       "files": ["**/*.ts", "**/*.tsx"],
-      "env": {
-        "development": true
-      },
+      // "env": {
+      //   "development": true
+      // },
       "rules": {
         "import/no-unresolved": "off" // Désactiver pendant le développement
       }

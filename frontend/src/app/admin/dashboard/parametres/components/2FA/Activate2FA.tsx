@@ -54,9 +54,7 @@ const Activate2FA: React.FC = () => {
 
       {/* Success Dialog */}
       <Dialog open={showInitSuccess2FA} onOpenChange={setShowInitSuccess2FA}>
-        <InitSuccess2FA
-          backupCodes={backupCodes}
-        />
+        <InitSuccess2FA backupCodes={backupCodes} />
       </Dialog>
     </>
   );

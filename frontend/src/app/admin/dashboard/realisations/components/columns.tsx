@@ -14,6 +14,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useRef } from 'react';
+import { mutate } from 'swr';
 
 import {
   AlertDialog,
@@ -46,7 +47,6 @@ import {
 import { deleteRealisation, updateRealisation } from '@/api/realisationsApi';
 import { formatDateForUX } from '@/lib/dateUtils';
 import { Realisation } from '@/types/realisation.interface';
-import { mutate } from 'swr';
 
 export const columns: ColumnDef<Realisation>[] = [
   {
