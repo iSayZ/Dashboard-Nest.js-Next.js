@@ -6,10 +6,12 @@
 
 ## 📷 Screenshots
 
-<img src="frontend/public/assets/images/screenshots/index.png" width="300" alt="Acceuil du dashboard">
-<img src="frontend/public/assets/images/screenshots/table-article.png" width="300" alt="Liste des articles">
-<img src="frontend/public/assets/images/screenshots/add-article.png" width="300" alt="Ajouter un article">
-<img src="frontend/public/assets/images/screenshots/2fa.png" width="300" alt="Activation authentification 2FA">
+<div>
+  <img src="frontend/public/assets/images/screenshots/index.png" width="400" alt="Acceuil du dashboard">
+  <img src="frontend/public/assets/images/screenshots/table-article.png" width="400" alt="Liste des articles">
+  <img src="frontend/public/assets/images/screenshots/add-article.png" width="400" alt="Ajouter un article">
+  <img src="frontend/public/assets/images/screenshots/2fa.png" width="400" alt="Activation authentification 2FA">
+</div>
 
 <br>
 
